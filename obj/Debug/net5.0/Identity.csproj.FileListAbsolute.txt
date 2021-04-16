@@ -154,3 +154,4 @@ C:\Users\Kuba\Documents\dokumenty\programing\web\identity\Identity-roles\obj\Deb
 C:\Users\Kuba\Documents\dokumenty\programing\web\identity\Identity-roles\obj\Debug\net5.0\ref\Identity.dll
 C:\Users\Kuba\Documents\dokumenty\programing\web\identity\Identity-roles\obj\Debug\net5.0\Identity.pdb
 C:\Users\Kuba\Documents\dokumenty\programing\web\identity\Identity-roles\obj\Debug\net5.0\Identity.genruntimeconfig.cache
+C:\Users\Kuba\Documents\dokumenty\programing\web\identity\Identity-roles\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll

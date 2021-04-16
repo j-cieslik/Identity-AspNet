@@ -54,6 +54,12 @@ namespace Identity
 
 					});
 
+					services.AddAuthentication().AddFacebook(options => {
+
+						options.AppId = _config["FacebookAppId"];
+						options.AppSecret = _config["FacebookAppSecret"];
+					});
+
 					services.Configure<SmtpOptions>(_config.GetSection("Smtp"));
 					services.AddControllersWithViews();
 

@@ -30,9 +30,31 @@ namespace Controllers
 			return View(model);
 		}
 
+		[HttpPost]
+		public IActionResult ExternalLogin(string provider, string returnUrl=null)
+		{
+				var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
+				var callBackUrl = Url.Action("ExternalLoginCallback");
+				properties.RedirectUri = callBackUrl;
+				
+				return Challenge(properties, provider);
+		}
+
 		public async Task<IActionResult> ExternalLoginCallback()
 		{
-			return View();
+			var info = await _signInManager.GetExternalLoginInfoAsync();
+			var emailClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+			var user = new IdentityUser {Email = emailClaim.Value, UserName = emailClaim.Value};
+
+			if ((await _userManager.FindByEmailAsync(user.Email)) == null)
+			{
+					await _userManager.CreateAsync(user);
+					await _userManager.AddLoginAsync(user, info);
+			}
+
+			await _signInManager.SignInAsync(user, false);
+
+			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpPost]
